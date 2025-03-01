@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Engine</title>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+  
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 
+  <script>
+    // Your Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyAiHO4EiczoWMNI51D96InVZlbualxrCp4",
       authDomain: "miranoo.firebaseapp.com",
@@ -17,28 +20,31 @@
       appId: "1:91814992794:web:c53dc0b0fa2508a6303823",
     };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
 
-    const registerUser = (email, password) => {
-      createUserWithEmailAndPassword(auth, email, password)
+    // Register User
+    function registerUser(email, password) {
+      auth.createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           console.log("User Registered:", userCredential.user);
         })
         .catch((error) => {
           console.error("Error:", error.message);
         });
-    };
+    }
 
-    const loginUser = (email, password) => {
-      signInWithEmailAndPassword(auth, email, password)
+    // Login User
+    function loginUser(email, password) {
+      auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           console.log("User Logged In:", userCredential.user);
         })
         .catch((error) => {
           console.error("Error:", error.message);
         });
-    };
+    }
   </script>
 </head>
 <body>
